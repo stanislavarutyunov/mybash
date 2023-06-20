@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # IP-адрес MP 10 Agent
-MP_IP_ADDRESS="10.192.64.164"
+MP_IP_ADDRESS=""
 
 # добавляем строку в конфиг /etc/syslog.conf
 echo "*.info;mail.none;lpr.none;news.none;uucp.none;cron.none @${MP_IP_ADDRESS}:514" | sudo tee -a /etc/syslog.conf > /dev/null
