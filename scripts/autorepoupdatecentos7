@@ -1,12 +1,9 @@
-<markdown>
 
-1)mkdir /scripts
+mkdir /scripts
 
-2) nano /scripts/repos_update.sh
+nano /scripts/repos_update.sh
 
-
-```
-#!/bin/bash
+```#!/bin/bash
 PATH=/etc:/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin
 
 rsync -iavrt --delete --exclude='repo*' rsync://mirror.yandex.ru/centos/7/os/x86_64/ /usr/share/nginx/html/repos/7/os/x86_64/
@@ -14,15 +11,12 @@ createrepo --update /usr/share/nginx/html/repos/7/os/x86_64
 
 rsync -iavrt --delete --exclude='repo*' rsync://mirror.yandex.ru/centos/7/updates/x86_64/ /usr/share/nginx/html/repos/7/updates/x86_64/
 createrepo --update /usr/share/nginx/html/repos/7/updates/x86_64
-
 ```
 
+ chmod +x /scripts/repos_update.sh
 
-4)chmod +x /scripts/repos_update.sh
 
-
-5) crontab -e
-
+ crontab -e
+```
 0 1 * * * /scripts/repos_update.sh
-
-<\markdown>
+```
