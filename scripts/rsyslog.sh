@@ -1,6 +1,6 @@
 #!/bin/bash
 #rsyslog 
-MP_IP_ADDRESS="10.192.64.164"
+MP_IP_ADDRESS=""
 # 1. Создание файла и установка прав
 sudo touch /etc/rsyslog.d/10-siem.conf
 sudo chmod u=rw,g=r,o= /etc/rsyslog.d/10-siem.conf
