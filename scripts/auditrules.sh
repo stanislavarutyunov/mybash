@@ -21,8 +21,7 @@
 # Аббревиатура aw означает следующее: а — изменение атрибута (attribute change), w — запись (write). Формулировка perm = aw указывает, что для директории /etc нужно отслеживать все факты изменения атрибутов (а — attribute change) и w (w — write).
 
 
-# В каталоге /etc/audit/rules.d для всех файлов с расширением rules измените
-расширение на любое другое
+# В каталоге /etc/audit/rules.d для всех файлов с расширением rules измените расширение на любое другое
 for file in /etc/audit/rules.d/*.rules; do
     mv -- "$file" "${file%.rules}.new_extension"
 done
