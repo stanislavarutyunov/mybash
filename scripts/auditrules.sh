@@ -130,3 +130,6 @@ systemctl restart auditd.service
 auditctl -l
 
 # sudo aureport -au - посмотреть информацию обо всех попытках входа в систему
+# Проверка ведения лога аудита - обратиться к защищаемому файлу и проверить фиксацию обращения к файлу в логе аудита
+# cat /etc/shadow
+# sudo ausearch -f /etc/shadow | sudo aureport -f -i
