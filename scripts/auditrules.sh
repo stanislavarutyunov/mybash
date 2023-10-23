@@ -19,11 +19,9 @@
 # Можно установить и дополнительный фильтр:
 # $ auditctl -a exit,always -S open -F path =/etc/ -F perm = aw
 # Аббревиатура aw означает следующее: а — изменение атрибута (attribute change), w — запись (write). Формулировка perm = aw указывает, что для директории /etc нужно отслеживать все факты изменения атрибутов (а — attribute change) и w (w — write).
-# При настройке слежения за отдельными файлами можно опустить опцию -S, например:
 
 
-# В каталоге /etc/audit/rules.d для всех файлов с расширением rules измените
-расширение на любое другое
+# В каталоге /etc/audit/rules.d для всех файлов с расширением rules измените расширение на любое другое
 for file in /etc/audit/rules.d/*.rules; do
     mv -- "$file" "${file%.rules}.new_extension"
 done
@@ -130,3 +128,6 @@ systemctl restart auditd.service
 auditctl -l
 
 # sudo aureport -au - посмотреть информацию обо всех попытках входа в систему
+# Проверка ведения лога аудита - обратиться к защищаемому файлу и проверить фиксацию обращения к файлу в логе аудита
+# cat /etc/shadow
+# sudo ausearch -f /etc/shadow | sudo aureport -f -i
