@@ -20,6 +20,18 @@
 # $ auditctl -a exit,always -S open -F path =/etc/ -F perm = aw
 # Аббревиатура aw означает следующее: а — изменение атрибута (attribute change), w — запись (write). Формулировка perm = aw указывает, что для директории /etc нужно отслеживать все факты изменения атрибутов (а — attribute change) и w (w — write).
 
+# Внести изменения в конфигурационный файл /etc/audit/auditd.conf
+sed -i "s/log_format = RAW/log_format = ENRICHED/g" /etc/audit/auditd.conf
+sed -i "s/name_format = NONE/name_format = NUMERIC/g" /etc/audit/auditd.conf
+sed -i "s/disp_qos = lossy/disp_qos = lossless/g" /etc/audit/auditd.conf
+sed -i "s/write_logs = no/write_logs = yes/g" /etc/audit/auditd.conf
+
+# Если нужно отключить локальную запись логов аудита
+# sed -i "s/write_logs = yes/write_logs = no/g" /etc/audit/auditd.conf
+
+# Настройка плагина audispd
+sed -i "s/active = no/active = yes/g" /etc/audisp/plugins.d/syslog.conf
+sed -i "s/args = LOG_INFO/args = LOG_LOCAL6/g" /etc/audisp/plugins.d/syslog.conf
 
 # В каталоге /etc/audit/rules.d для всех файлов с расширением rules измените расширение на любое другое
 for file in /etc/audit/rules.d/*.rules; do
