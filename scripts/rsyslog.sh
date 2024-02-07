@@ -19,7 +19,7 @@ sudo echo "$RepeatedMsgReduction off" >> /etc/rsyslog.conf
 sudo echo "$imjournalRatelimitInterval 15" >> /etc/rsyslog.conf
 
 # 6. Добавление строки в конфигурационный файл /etc/systemd/journald.conf
-sudo sed -i 's/#RateLimitBurst= RateLimitBurst=/RateLimitBurst=20000/g' /etc/systemd/journald.conf
+sudo sed -i 's/#RateLimitBurst=.*/RateLimitBurst=20000/g' /etc/systemd/journald.conf
 
 # Перезапуск сервиса rsyslog для применения изменений
 sudo service rsyslog restart
