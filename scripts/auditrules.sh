@@ -29,10 +29,6 @@ sed -i "s/write_logs = no/write_logs = yes/g" /etc/audit/auditd.conf
 # Если нужно отключить локальную запись логов аудита
 # sed -i "s/write_logs = yes/write_logs = no/g" /etc/audit/auditd.conf
 
-# Настройка плагина audispd
-sed -i "s/active = no/active = yes/g" /etc/audisp/plugins.d/syslog.conf
-sed -i "s/args = LOG_INFO/args = LOG_LOCAL6/g" /etc/audisp/plugins.d/syslog.conf
-
 # В каталоге /etc/audit/rules.d для всех файлов с расширением rules измените расширение на любое другое
 for file in /etc/audit/rules.d/*.rules; do
     mv -- "$file" "${file%.rules}.new_extension"
